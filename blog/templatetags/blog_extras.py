@@ -70,3 +70,11 @@ def endrow():
 def recent_posts(post):
     posts = Post.objects.exclude(pk=post.pk)[:5]
     return {"title": "Recent Posts", "posts": posts}
+
+@register.simple_tag
+def col(extra_classes=""):
+    return format_html('<div class="col {}">', extra_classes)
+
+@register.simple_tag
+def endcol():
+    return format_html("</div>")
