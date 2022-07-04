@@ -13,7 +13,10 @@ logger = logging.getLogger(__name__)
 # @cache_page(300)
 @vary_on_headers("Cookie")
 def index(request):
-    posts = Post.objects.filter(published_at__lte=timezone.now())
+    # posts = Post.objects.filter(published_at__lte=timezone.now())
+    # fetch all data in one query
+    posts = Post.objects.filter(published_at__lte=timezone.now()).select_related("author")
+
     logger.debug("Got %d posts", len(posts))
 
     return render(request, "blog/index.html", {'posts': posts})
