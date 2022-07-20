@@ -61,6 +61,7 @@ class Dev(Configuration):
         'blog',
         'debug_toolbar',
         'blango_auth',
+        'rest_framework',
     ]
 
     MIDDLEWARE = [
