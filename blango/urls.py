@@ -22,6 +22,7 @@ import blog.views
 from django_registration.backends.activation.views import RegistrationView
 from blango_auth.forms import BlangoRegistrationForm
 import blango_auth.views
+from rest_framework.authtoken import views
 
 # from django.conf import settings
 # print(f"Time zone: {settings.TIME_ZONE}")
@@ -47,6 +48,12 @@ urlpatterns = [
 
 
 ]
+
+urlpatterns += [
+    path("auth/", include("rest_framework.urls")),
+    path("token-auth/", views.obtain_auth_token)
+]
+
 
 
 if settings.DEBUG:
